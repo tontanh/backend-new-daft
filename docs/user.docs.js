@@ -117,6 +117,15 @@ const refreshToken = {
     responses: status,
   },
 };
+
+const user_details = {
+  get: {
+    tags: ["User-info"],
+    summary: "user profile",
+    security: secure,
+    responses: status,
+  },
+};
 const user_profile_insert = {
   post: {
     tags: ["User-info"],
@@ -159,12 +168,47 @@ const user_profile_insert = {
     security: secure,
   },
 };
-const user_details = {
-  get: {
+const user_profile_update = {
+  put: {
     tags: ["User-info"],
-    summary: "user profile",
-    security: secure,
+    summary: "user update",
+    description: "you can update one or all",
+    requestBody: {
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              firstname: {
+                example: "string",
+              },
+              lastname: {
+                type: "String",
+                example: "string",
+              },
+              birthday: {
+                type: "Date",
+                example: "string",
+              },
+              gender: {
+                type: "String",
+                example: "string",
+              },
+              tell: {
+                type: "Number",
+                example: "Number",
+              },
+              imgurl: {
+                type: "String",
+                example: "string",
+              },
+            },
+          },
+        },
+      },
+    },
     responses: status,
+    security: secure,
   },
 };
 const userDocs = {
@@ -174,6 +218,7 @@ const userDocs = {
   "/api/refreshToken/delete": logout,
   "/api/users/details": user_details,
   "/api/users/profile": user_profile_insert,
+  "/api/users/profile_update": user_profile_update,
 };
 
 module.exports = { userDocs, secure, status };

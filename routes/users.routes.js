@@ -7,4 +7,5 @@ const profileController = require("../controllers/users.controller.js");
 const router = Router();
 router.get("/details", auth,profileController.userProfile);
 router.post("/profile", auth, profileController.insert);
+router.put("/profile_update", auth, profileController.userUpdate);
 module.exports = router;

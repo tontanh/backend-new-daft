@@ -28,7 +28,7 @@ async function userProfile({ id }, callback) {
 }
 
 async function updateUser({ id, body }, callback) {
-  const user = await User.updateOne({ _id: id }, { $set: body })
+  const user = await User.updateOne({ user_id : id }, { $set: body })
     .then((response) => {
       return callback(null, response);
     })
@@ -42,3 +42,4 @@ module.exports = {
   userProfile,
   updateUser,
 };
+

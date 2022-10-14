@@ -26,21 +26,19 @@ userProfile = (req, res, next) => {
   });
 };
 
-// userUpdate = (req, res, next) => {
-//   var id = ownerToken.id;
-//   var body = req.body;
-//   userService.updateUser({ id,body }, (error, result) => {
-//     if (error) {
-//       return next(error);
-//     }
-//     return res.status(200).send({
-//       message: "Success update",
-//       data: result,
-//     });
-//   });
-// return res
-//   .status(200)
-//   .json({ message: "Authorized user!" });
-// };
+userUpdate = (req, res, next) => {
+  var id = ownerToken.id;
+  var body = req.body;
+  userService.updateUser({ id,body }, (error, result) => {
+    if (error) {
+      return next(error);
+    }
+    // if(result)
+    return res.status(200).send({
+      message: "Success update",
+      data: result,
+    });
+  });
+};
 
-module.exports = { insert,userProfile };
+module.exports = { insert,userProfile ,userUpdate};
