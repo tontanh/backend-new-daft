@@ -40,5 +40,33 @@ userUpdate = (req, res, next) => {
     });
   });
 };
-
-module.exports = { insert,userProfile ,userUpdate};
+// blog = (req, res, next) => {
+//   req.body.owner_id = ownerToken.id;
+//   req.body.cover = req.file.filename;
+//   blogService.blog(req.body, (error, result) => {
+//     if (error) {
+//       return next(error);
+//     }
+//     return res.status(200).send({
+//       message: "Success",
+//       data: result,
+//     });
+//   });
+// };
+blog = (req, res, next) => {
+  var id = ownerToken.id;
+  req.body.imgurl = req.file.filename;
+  body = {imgurl : req.body.imgurl}
+  console.log(body);
+  userService.updateUser({ id,body }, (error, result) => {
+    if (error) {
+      return next(error);
+    }
+    // if(result)
+    return res.status(200).send({
+      message: "Success update",
+      data: result,
+    });
+  });
+};
+module.exports = { insert,userProfile ,userUpdate,blog};

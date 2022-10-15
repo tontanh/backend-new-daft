@@ -179,28 +179,32 @@ const user_profile_update = {
           schema: {
             type: "object",
             properties: {
-              firstname: {
+              string: {
                 example: "string",
               },
-              lastname: {
-                type: "String",
-                example: "string",
-              },
-              birthday: {
-                type: "Date",
-                example: "string",
-              },
-              gender: {
-                type: "String",
-                example: "string",
-              },
-              tell: {
-                type: "Number",
-                example: "Number",
-              },
+            },
+          },
+        },
+      },
+    },
+    responses: status,
+    security: secure,
+  },
+};
+const update_image_profile = {
+  put: {
+    tags: ["User-info"],
+    summary: "user update profile",
+    // description: "you can update one or all",
+    requestBody: {
+      content: {
+        "multipart/form-data": {
+          schema: {
+            type: "object",
+            properties: {
               imgurl: {
-                type: "String",
-                example: "string",
+                type: "string",
+                format: "binary",
               },
             },
           },
@@ -219,6 +223,7 @@ const userDocs = {
   "/api/users/details": user_details,
   "/api/users/profile": user_profile_insert,
   "/api/users/profile_update": user_profile_update,
+  "/api/users/update_image_profile": update_image_profile,
 };
 
 module.exports = { userDocs, secure, status };

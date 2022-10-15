@@ -13,7 +13,7 @@ dbConnect();
 
 app.use(express.json());
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocumention));
-
+app.use("/public/*", express.static("public/*"));
 app.use("/api", authRoutes);
 app.use("/api/refreshToken", refreshTokenRoutes);
 app.use("/api/users", userRoutes);
