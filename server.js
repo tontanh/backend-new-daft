@@ -18,5 +18,6 @@ app.use("/api", authRoutes);
 app.use("/api/refreshToken", refreshTokenRoutes);
 app.use("/api/users", userRoutes);
 app.use(errors.errorHandle);
+app.use("/image_profile", express.static("public/profile"));
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

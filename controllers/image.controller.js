@@ -2,7 +2,7 @@ const multer = require("multer");
 const express = require("express");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/uploads/");
+    cb(null, "./public/profile/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "--" + file.originalname);
