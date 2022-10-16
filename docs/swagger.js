@@ -1,5 +1,4 @@
-const userDocs =require( "./user.docs.js");
-
+const routeDocs =require( "./route.docs.js");
 const swaggerDocumention = {
   openapi: "3.0.0",
   // swagger: "2.0.0",
@@ -25,8 +24,8 @@ const swaggerDocumention = {
       description: "User - information",
     },
     {
-      name: "Message",
-      description: "Message + Socket.io",
+      name: "Follow",
+      description: "follow and unfollow",
     },
   ],
   components: {
@@ -38,6 +37,7 @@ const swaggerDocumention = {
       },
     },
   },
-  paths: userDocs.userDocs,
+  paths: routeDocs.routeDocs,
+  // paths: followDocs.followDocs,
 };
 module.exports= swaggerDocumention;

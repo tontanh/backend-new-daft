@@ -215,15 +215,13 @@ const update_image_profile = {
     security: secure,
   },
 };
-const userDocs = {
-  "/api/signup": signup,
-  "/api/login": login,
-  "/api/refreshToken": refreshToken,
-  "/api/refreshToken/delete": logout,
-  "/api/users/details": user_details,
-  "/api/users/profile": user_profile_insert,
-  "/api/users/profile_update": user_profile_update,
-  "/api/users/update_image_profile": update_image_profile,
+module.exports = {
+  signup,
+  update_image_profile,
+  user_profile_update,
+  user_details,
+  refreshToken,
+  logout,
+  login,
+  user_profile_insert,
 };
-
-module.exports = { userDocs, secure, status };

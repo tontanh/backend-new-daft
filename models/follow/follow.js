@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const { Schema } = mongoose;
 const userSchema = new Schema({
   first_id: {
@@ -11,7 +12,7 @@ const userSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["user", "admin", "super_admin"],
+    // enum: ["user", "admin", "super_admin"],
     default: null,
   },
   modifieddate: {
@@ -27,5 +28,7 @@ userSchema.set("toJSON", {
     delete returnedObject.__v;
   },
 });
+
+
 const User = mongoose.model("follow", userSchema);
 module.exports = User;

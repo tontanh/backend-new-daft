@@ -18,6 +18,7 @@ insert = (req, res, next) => {
 };
 
 userProfile = (req, res, next) => {
+  // console.log(ownerToken.id + 'eee');
   id = ownerToken.id;
   userService.userProfile({ id }, (error, result) => {
     if (error) {

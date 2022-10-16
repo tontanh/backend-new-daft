@@ -16,7 +16,7 @@ async function insert(params, callback) {
 }
 
 async function userProfile({ id }, callback) {
-  const user = await User.findOne({ id });
+  const user = await User.findOne({ 'user_id': id });
 
   if (user != null) {
     // var gg = (null, { ...user.toJSON() });

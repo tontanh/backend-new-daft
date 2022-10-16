@@ -15,7 +15,8 @@ const auth = async (req, res, next) => {
     );
     req.user = tokenDetails;
     ownerToken.id = tokenDetails._id;
-    // console.log(tokenDetails._id);
+    // console.log(tokenDetails);
+    // console.log(ownerToken.id);
     next();
   } catch (err) {
     // console.log(err);
