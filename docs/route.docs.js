@@ -10,7 +10,8 @@ const routeDocs = {
   "/api/users/profile_update": userDocs.user_profile_update,
   "/api/users/update_image_profile": userDocs.update_image_profile,
   "/api/follow":followDocs.follow,
-  "/api/follow/delete":followDocs.unfollow
+  "/api/follow/delete":followDocs.unfollow,
+  "/api/follow/user_following":followDocs.following
 };
 
 module.exports = { routeDocs };

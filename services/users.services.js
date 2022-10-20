@@ -26,7 +26,17 @@ async function userProfile({ id }, callback) {
     return callback({ message: "User not Existed" });
   }
 }
+async function userProfileSearch(follow_id , callback) {
+  // console.log(follow_id);
+  const user = await User.find({ 'user_id': { $in: follow_id} })
 
+  .then((response) => {
+    return callback(null, response);
+  })
+  .catch((error) => {
+    return callback(error);
+  });
+}
 async function updateUser({ id, body }, callback) {
   const user = await User.updateOne({ user_id : id }, { $set: body })
     .then((response) => {
@@ -41,5 +51,6 @@ module.exports = {
   insert,
   userProfile,
   updateUser,
+  userProfileSearch
 };
 

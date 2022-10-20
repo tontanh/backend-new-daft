@@ -16,10 +16,9 @@ async function insert(params, callback) {
 }
 
 async function unfollow({ id1, id2 }, callback) {
- 
-    const data = await Follow.remove({
-      $and: [{ "first_id:": id1 }, { scond_id: id2 }],
-    })
+  const data = await Follow.remove({
+    $and: [{ "first_id:": id1 }, { "scond_id:": id2 }],
+  })
     .then((response) => {
       return callback(null, response);
     })
@@ -28,20 +27,18 @@ async function unfollow({ id1, id2 }, callback) {
     });
 }
 
-
-// async function userProfile({ id }, callback) {
-//   const user = await User.findOne({ id });
-
-//   if (user != null) {
-//     // var gg = (null, { ...user.toJSON() });
-//     // console.log(gg.id);
-//     return callback(null, { ...user.toJSON() });
-//   } else {
-//     return callback({ message: "User not Existed" });
-//   }
-// }
+async function following({ id }, callback) {
+  const data = await Follow.find({ "first_id:": id })
+  .then((response) => {
+    return callback(null, response);
+  })
+  .catch((error) => {
+    return callback(error);
+  });
+}
 
 module.exports = {
   insert,
   unfollow,
+  following,
 };

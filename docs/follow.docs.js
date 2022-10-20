@@ -68,5 +68,12 @@ const unfollow = {
     security: secure,
   },
 };
-
-module.exports = { follow, unfollow };
+const following = {
+  get: {
+    tags: ["Follow"],
+    summary: "user following",
+    security: secure,
+    responses: status,
+  },
+};
+module.exports = { follow, unfollow ,following};
