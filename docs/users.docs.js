@@ -215,6 +215,28 @@ const update_image_profile = {
     security: secure,
   },
 };
+const user_findAll = {
+  get: {
+    tags: ["User-info"],
+    summary: "search user",
+    parameters: [
+      {
+        in: "query",
+        name: "search",
+        schema: {
+          type: "string",
+          properties: {
+            text: {
+              example: "name or lastname",
+            },
+          },
+        },
+      },
+    ],
+    security: secure,
+    responses: status,
+  },
+};
 module.exports = {
   signup,
   update_image_profile,
@@ -224,4 +246,5 @@ module.exports = {
   logout,
   login,
   user_profile_insert,
+  user_findAll,
 };

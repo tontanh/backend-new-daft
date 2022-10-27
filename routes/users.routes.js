@@ -7,6 +7,7 @@ const upload = require("../controllers/image.controller");
 const router = Router();
 router.get("/details", auth,profileController.userProfile);
 router.post("/profile", auth, profileController.insert);
+router.get("/profile_search",auth, profileController.userFindAll);
 router.put("/profile_update", auth, profileController.userUpdate);
 router.put("/update_image_profile", auth,upload.upload.single("imgurl"), profileController.profileImage);
 module.exports = router;

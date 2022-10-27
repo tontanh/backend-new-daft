@@ -49,11 +49,10 @@ async function following(req, res, next) {
   // console.log(follow_id)
   userProfile.userProfileSearch(follow_id, (error, result) => {
     if (error) {
-      // console.log("not found image");
+      console.log(error);
       return next(error);
     }
- c
-    console.log(found);
+    // console.log(found);
     return res.status(200).send({
       message: "Success",
       data: result,

@@ -1,3 +1,4 @@
+const User = require("../models/user/user.profile.js");
 const fs = require("fs");
 const userService = require("../services/users.services.js");
 var ownerToken = require("../middleware/owner");
@@ -21,6 +22,28 @@ userProfile = (req, res, next) => {
   // console.log(ownerToken.id + 'eee');
   id = ownerToken.id;
   userService.userProfile({ id }, (error, result) => {
+    if (error) {
+      return next(error);
+    }
+    return res.status(200).send({
+      message: "Success",
+      data: result,
+    });
+  });
+};
+userFindAll = (req, res, next) => {
+  // console.log(ownerToken.id + 'eee');
+  const txt = req.query.search
+  ? {
+      $or: [
+        { firstname: { $regex: req.query.search, $options: "i" } },
+        { lastname: { $regex: req.query.search, $options: "i" } },
+      ],
+    }
+  : {};
+//  var txt = req.query.search;
+//  console.log(txt)
+  userService.userAll( txt , (error, result) => {
     if (error) {
       return next(error);
     }
@@ -75,4 +98,5 @@ async function profileImage  (req, res, next) {
     } else console.log("update image and Old Image File has been Deleted");
   });
 };
-module.exports = { insert, userProfile, userUpdate, profileImage };
+
+module.exports = { insert, userProfile, userUpdate, profileImage,userFindAll };

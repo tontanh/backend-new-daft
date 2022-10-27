@@ -16,7 +16,7 @@ async function insert(params, callback) {
 }
 
 async function userProfile({ id }, callback) {
-  const user = await User.findOne({ 'user_id': id });
+  const user = await User.findOne({ user_id: id });
 
   if (user != null) {
     // var gg = (null, { ...user.toJSON() });
@@ -26,19 +26,40 @@ async function userProfile({ id }, callback) {
     return callback({ message: "User not Existed" });
   }
 }
-async function userProfileSearch(follow_id , callback) {
-  // console.log(follow_id);
-  const user = await User.find({ 'user_id': { $in: follow_id} })
+async function userAll(txt, callback) {
+  // console.log(txt)
 
-  .then((response) => {
-    return callback(null, response);
-  })
-  .catch((error) => {
-    return callback(error);
-  });
+  const user = await User.find(txt)
+    .then((response) => {
+      return callback(null, response);
+    })
+    .catch((error) => {
+      return callback(error);
+    });
 }
+
+async function userProfileSearch(follow_id, callback) {
+  // console.log(follow_id);
+  const projection = {
+    _id: 0,
+    firstname: 1,
+    lastname: 1,
+    imgurl: 1,
+  };
+  const user = await User.find(
+    { user_id: { $in: follow_id } },
+    { firstname: 1, lastname: 1, user_id: 1, imgurl: 1 }
+  )
+    .then((response) => {
+      return callback(null, response);
+    })
+    .catch((error) => {
+      return callback(error);
+    });
+}
+
 async function updateUser({ id, body }, callback) {
-  const user = await User.updateOne({ user_id : id }, { $set: body })
+  const user = await User.updateOne({ user_id: id }, { $set: body })
     .then((response) => {
       return callback(null, response);
     })
@@ -51,6 +72,6 @@ module.exports = {
   insert,
   userProfile,
   updateUser,
-  userProfileSearch
+  userProfileSearch,
+  userAll,
 };
-
